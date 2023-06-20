@@ -5,8 +5,10 @@ import re
 from flask import Flask, render_template, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
+from flask_paginate import Pagination, get_page_args
 
-
+app = Flask(__name__)
+# , static_url_path='/static', static_folder='/static'
 def load_vocab():
     vocab = {}
     with open('tf-idf/vocab.txt', "r") as f:
@@ -116,40 +118,43 @@ def calculate_sorted_order_of_documents(query_terms):
 
     if len(potential_documents) == 0:
         print("No matching question found. Please search with more relevant terms.")
+        # message = "No matching question found. Please search with more relevant terms."
+
+
 
     for document_index in potential_documents:
         # print('Document: ', documents[int(document_index)], ' Score: ', potential_documents[document_index])
         ans.append(
-            {"Question Link": Qlink[int(document_index) - 1][:-2], "names": Qname[int(document_index) - 1][5:],
-             ' Score': potential_documents[document_index]})
+            {"Question Link": Qlink[int(document_index) - 1][:-2],
+             "names":re.sub(r'[^a-zA-Z\s]', '', Qname[int(document_index) - 1]),
+             ' Score': potential_documents[document_index]}
+        )
     return ans
 
-
-# query_string = input('Enter your query: ')
-# query_terms = [term.lower() for term in query_string.strip().split()]
-
-# print(query_terms)
-# calculate_sorted_order_of_documents(query_terms)
-app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
 
 
-class SearchForm(FlaskForm):
-    search = StringField('', render_kw={'class': 'd-grid gap-2 col-6 mx-auto btn btn btn-success',
-                                        'style': 'border-radius: 50px;background-color:white;color:black'})
-    submit = SubmitField('search ', render_kw={'class': 'd-grid gap-2 col-6 mx-auto btn btn-outline-info',
-                                               'style': 'border-radius: 50px; margin: 15px'})
+# class SearchForm(FlaskForm):
+#     search = StringField(' ', render_kw={'class': 'search-field'}, description='Search here...')
+#     submit = SubmitField('search ', render_kw={'class': 'submit-button'})
 
+
+class NavbarSearchForm(FlaskForm):
+    search = StringField('',render_kw={'class': 'form-control me-2', 'placeholder': 'Enter your favourite Question'})
+    submit = SubmitField('search', render_kw={'class': 'btn btn-outline-success'})
+
+    def move_search_button(self):
+        self.submit.render_kw['class'] += ' moved'
 
 @app.route("/<query>")
 def return_links(query):
     q_terms = [term.lower() for term in query.strip().split()]
-    return jsonify(calculate_sorted_order_of_documents(q_terms)[:20:])
+    return jsonify(calculate_sorted_order_of_documents(q_terms)[:3000:])
 
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    form = SearchForm()
+    form = NavbarSearchForm()
     results = []
     if form.validate_on_submit():
         query = form.search.data

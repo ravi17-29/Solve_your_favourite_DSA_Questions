@@ -6,13 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4a8571b2-f614-432d-bc9b-66f211799ed3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qdata/Qindex.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Qdata/Qindex.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Qdata/index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Qdata/index.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prepare.py" beforeDir="false" afterPath="$PROJECT_DIR$/prepare.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf-idf/documents.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tf-idf/documents.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf-idf/inverted-index.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tf-idf/inverted-index.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tf-idf/vocab.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tf-idf/vocab.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webscrap1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webscrap2.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
