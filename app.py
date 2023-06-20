@@ -5,7 +5,6 @@ import re
 from flask import Flask, render_template, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from flask_paginate import Pagination, get_page_args
 
 app = Flask(__name__)
 # , static_url_path='/static', static_folder='/static'
